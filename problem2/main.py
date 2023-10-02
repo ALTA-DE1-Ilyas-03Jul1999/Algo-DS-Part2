@@ -1,5 +1,27 @@
+def urutin (barang):
+    for i in range(len(barang)):
+        for j in range( i + 1, len(barang)):
+            if barang[i] > barang[j]:
+                barang[i], barang[j] = barang[j], barang[i]
+    return barang
+
+
 def maximum_buy_product(money, product_price):
-    return 0
+    list_pp = urutin(product_price)
+    keranjang = 0
+    for i in list_pp:
+        if money >= i:
+            money -= i
+            keranjang += 1
+        else:
+            break
+    return keranjang
+                    
+            
+            
+        
+        
+        
 
 if __name__ == "__main__":
     print(maximum_buy_product(50000, [25000, 25000, 10000, 14000]))      # 3

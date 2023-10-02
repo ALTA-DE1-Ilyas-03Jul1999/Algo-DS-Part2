@@ -1,5 +1,21 @@
+def urut_barang(b):
+    return (-b[1], b[0])
+
 def count_item_and_sort(items):
-    result = ""
+    counts = {}
+    for x in items:
+        if x in counts:
+            counts[x] += 1
+        else:
+            counts[x] = 1
+            
+    list_items = sorted(counts.items(), key = urut_barang)
+    for i in range (len(list_items)):
+        for j in range (i+1, len(list_items)):
+            if list_items[i][1] > list_items[j][1]:
+                list_items[i], list_items[j] = list_items[j], list_items[i]
+                
+    result = ' '.join([f'{x[0]}->{x[1]}' for x in list_items])
     return result
 
 if __name__ == "__main__":
